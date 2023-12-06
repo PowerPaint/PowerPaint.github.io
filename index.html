@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PowerPaint</title>
+<link href="style.css" rel="stylesheet">
+<!-- <script type="text/javascript" src="./DreamBooth_files/jquery.js"></script> -->
+</head>
+
+<body>
+<div class="content">
+  <h1><strong>A Task is Worth One Word: Learning with Task Prompts for High-Quality Versatile Image Inpainting</strong></h1>
+  <p id="authors"><a href="https://scholar.google.com/citations?user=J3olRccAAAAJ&hl=en">Junhao Zhuang<sup>1 2</sup></a> <a href="https://scholar.google.com/citations?user=14LbnMIAAAAJ&hl=en&oi=sra">Yanhong Zeng<sup>2</sup></a> <a href="https://openreview.net/profile?id=~Wenran_Liu2">Wenran Liu<sup>2</sup></a> <a href="https://scholar.google.com/citations?hl=en&amp;user=fYdxi2sAAAAJ">Chun Yuan<sup>† 1</sup></a> <a href="https://scholar.google.com/citations?user=eGD0b7IAAAAJ&hl=en&oi=sra">Kai Chen<sup>† 2</sup></a><br>
+
+    <span style="font-size: 16px"><br>
+        <sup>1</sup> Tsinghua University, <sup>2</sup> Shanghai AI Laboratory <br>
+      <sup>†</sup>Indicates Equal Advising</span>
+        </p>
+
+        <div style="text-align: center;">
+          <a target="_blank" href="https://www.tsinghua.edu.cn/">
+          <img src="fig/thu.png" alt="Institution 1" style="width: auto; height: 70px; margin-right: 20px;"></a>
+          <a target="_blank" href="https://www.shlab.org.cn/">
+          <img src="fig/PJlab.jpeg" alt="Institution 2" style="width: auto; height: 70px;"></a>
+        </div>
+
+        <font size="+2">
+          <p style="text-align: center;">
+            <a href="https://arxiv.org/" target="_blank">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+	        <a href="https://github.com/" target="_blank">[Code]</a>
+          </p>
+    </font>
+
+        <p><b>PowerPaint</b> is the first versatile image inpainting model that simultaneously achieves state-of-the-art results in various inpainting tasks such as text-guided object inpainting, context-aware image inpainting, shape-guided object inpainting with controllable shape-fitting, and outpainting.</p>
+        <video width="640" height="480" controls>
+          <source src="./fig/cvpr720p.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+</div>
+
+
+<div class="content">
+  <h2 style="text-align:center;"><strong>Abstract</strong></h2>
+  <p>Achieving high-quality versatile image inpainting, where user-specified regions are filled with plausible content according to user intent, presents a significant challenge. 
+    Existing methods face difficulties in simultaneously addressing context-aware image inpainting and text-guided object inpainting due to the distinct optimal training strategies required.
+    To overcome this challenge, we introduce <b>PowerPaint</b>, the first high-quality and versatile inpainting model that excels in both tasks.
+    First, we introduce learnable task prompts along with tailored fine-tuning strategies to guide the model's focus on different inpainting targets explicitly. This enables PowerPaint to accomplish various inpainting tasks by utilizing different task prompts, resulting in state-of-the-art performance. 
+    Second, we demonstrate the versatility of the task prompt in PowerPaint by showcasing its effectiveness as a negative prompt for object removal. Additionally, we leverage prompt interpolation techniques to enable controllable shape-guided object inpainting.
+    Finally, we extensively evaluate PowerPaint on various inpainting benchmarks to demonstrate its superior performance for versatile image inpainting. We will release the codes and models publicly, facilitating further research in the field.</p>
+    <img src="fig/teaser.png" class="teaser-gif" style="width:100%;">
+  </div>
+
+
+<div class="content">
+    <h2 style="text-align:center;"><strong>Method</strong></h2>
+    <p> <b>PowerPaint</b> fine-tunes a text-to-image model with two task prompts, i.e., P<sub>obj</sub> and P<sub>ctxt</sub>, for text-guided object inpainting and context-aware image inpainting, respectively. Specifically, P<sub>obj</sub> can be used as a negative prompt with classifier-free guidance sampling for effective object removal. We further introduce P<sub>shape</sub> for shape-guided object inpainting, which can be further extended by prompt interpolation with P<sub>ctxt</sub> to control how closely the generated objects should align with the mask shape.</p>
+    <br>
+    <img class="summary-img" src="fig/flowchart_11_17.png" style="width:100%;"> <br>
+  </div>
+
+<div class="content">
+  <h2 style="text-align:center;"><strong>Comparison Results</strong></h2>
+  <img src="fig/object.png" class="teaser-gif" style="width:100%;">
+  <img src="fig/Inpainting.png" class="teaser-gif" style="width:100%;">
+  <img src="fig/outpaint.png" class="teaser-gif" style="width:100%;">
+</div>
+
+
+<div id="results2" class="content">
+  <h2 style="text-align:center;"><strong>Integration with <a href="https://github.com/lllyasviel/ControlNet" target="_blank">ControlNet </a></strong></h2>
+    <h4>PowerPaint + Depth</h4>
+    <img class="summary-img" src="fig/sub_depth.png" style="width:100%;">
+    <h4>PowerPaint + Canny</h4>
+    <img class="summary-img" src="fig/sup_canny.png" style="width:100%;">
+    <h4>PowerPaint + HED</h4>
+    <img class="summary-img" src="fig/sup_hed.png" style="width:100%;">
+    <h4>PowerPaint + Human Pose</h4>
+    <img class="summary-img" src="fig/sup_pose.png" style="width:100%;">
+</div>
+
+
+<div class="content">
+  <h2 style="text-align:center;"><strong>BibTex</strong></h2>
+  <code> @article{hertz2023StyleAligned,<br>
+  &nbsp;&nbsp;title={Style Aligned Image Generation via Shared Attention},<br>
+  &nbsp;&nbsp;author={Hertz, Amir and Voynov, Andrey and Fruchter, Shlomi and Cohen-Or, Daniel},<br>
+  &nbsp;&nbsp;booktitle={arXiv preprint arxiv:2312.02133},<br>
+  &nbsp;&nbsp;year={2023}<br>
+  } </code> 
+</div>
+
+
+<!-- <div class="content" id="acknowledgements">
+  <p><strong>Acknowledgements</strong>:
+    We thank Or Patashnik, Matan Cohen, Yael Pritch, and Yael Vinker for their valuable inputs and early feedback that contributed to this work. We especially thank Yael Vinker for providing one of her <a href="https://yael-vinker.github.io/website/drawing.html">artworks</a> as a style reference.
+  </p>
+</div> -->
+</body>
+
+
+</html>
